@@ -1,0 +1,91 @@
+<div class="container">
+  <h2>Employee Module</h2>
+  
+	<div id="custom-search-input" *ngIf="!frmDisplayFlag">
+	<div class="col-md-2"></div>
+	<div class="input-group col-md-6">
+		<input type="text" class="search-query form-control" placeholder="Search" id="searchValue" name="searchValue" [(ngModel)]="searchValue">
+		<span class="input-group-btn">
+			<button class="btn btn-primary" type="button">
+				<span class=" glyphicon glyphicon-search"></span>
+			</button>
+		</span>
+	</div>
+	<div class="col-md-4"><button class="btn btn-primary" type="button" (click)="showForm()" *ngIf="!frmDisplayFlag">Add Employee</button></div>
+</div>
+<div class="col-md-12" *ngIf="frmDisplayFlag">
+	<div class="col-md-12">&nbsp;</div>
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+		<form id="empForm" name="empForm" #empForm="ngForm">
+			<div class="form-group">
+				<label>Name</label>
+				<br>
+				<input type="text" id="firstname" name="firstname" [(ngModel)]="model.firstname" #firstname="ngModel" required>
+				<div *ngIf="firstname.errors && firstname.touched" class="alert alert-danger">
+					<div [hidden]="!firstname.errors.required">First Name is required.</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Surname</label>
+				<br>
+				<input type="text" id="surname" name="surname" [(ngModel)]="model.surname" #surname="ngModel" required>
+				<div *ngIf="surname.errors && surname.touched" class="alert alert-danger">
+					<div [hidden]="!surname.errors.required">Surname is required.</div>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label>Level</label>
+				<br>
+				<input type="text" id="level" name="level" [(ngModel)]="model.level" #level="ngModel" required>
+				<div *ngIf="level.errors && level.touched" class="alert alert-danger">
+					<div [hidden]="!level.errors.required">Level is required.</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label>Salary</label>
+				<br>
+				<input type="text" id="salary" name="salary" [(ngModel)]="model.salary" #salary="ngModel" required>
+				<div *ngIf="salary.errors && salary.touched" class="alert alert-danger">
+					<div [hidden]="!salary.errors.required">Salary is required.</div>
+				</div>
+			</div>
+			<input type="hidden" id="id" name="id" [(ngModel)]="model.id" #id="ngModel">
+			<button type="button" class="btn btn-default" [disabled]="!empForm.form.valid" (click)="onSubmit()">Save</button>
+			<button type="reset" class="btn btn-default">Reset</button>
+
+		</form>
+	
+	</div>
+	<div class="col-md-3"></div>
+</div>
+<div style="text-align: center" *ngIf="noRecordFlag" class="col-md-12"> No Record Found</div>
+<div class="col-md-12"></div>
+  <table class="table table-bordered table-hover" *ngIf="!noRecordFlag && tblDisplayFlag">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+		<th>Level</th>
+		<th>Salary</th>
+		<th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of records | multifilter: {id:searchValue, firstname:searchValue , surname:searchValue, level:searchValue, salary:searchValue}: false">
+        <td>{{emp.id}}</td>
+        <td>{{emp.firstname}} {{emp.surname}}</td>
+		<td>{{emp.level}}</td>
+		<td>{{emp.salary}}</td>
+		<td>
+			<button class="btn btn-sm btn-primary" (click)="editRecord(emp.id)"><span class="glyphicon glyphicon-pencil"></span></button>
+			<button class="btn btn-sm btn-danger" (click)="deleteRecord(emp.id)"><span class="glyphicon glyphicon-trash"></span></button>
+		</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
