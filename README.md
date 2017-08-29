@@ -11,8 +11,12 @@ Then follow below steps
 
 Note: In this project we are storing data in localStoage only. Initially, I have added one record in localStorage which you can see on the screen. Then you can perform operation like Search employee, Add, Edit and delete employee.
 
+app.component.ts - controller file. As we are storing data in localStorage. So, not created service files and methods. If we are using any REST call then we need to create service file. Also, we need to add that service in app.module.ts files under provider array.
+Service file will inject http service and call make REST url. In such scenario, service file will act as model file.
+app.component.html - view file
 
-=========================
+
+
 # EmpApp
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
