@@ -1,3 +1,18 @@
+# Setup Steps
+1. I have created deployable folder "dist". If you just want to see UI part then deploy files in dist folder to the server under any particular directory. 
+Suppose you created "empapp" folder on your web server then move all files under dist folder to "empapp" folder and access project using your server path and empapp folder.
+e.g http://localhost:4200/empapp
+
+2. If you want to check code and modify the code then you need to checkout files under angular2empapp folder on your local machine. 
+Then follow below steps
+- After that install node js and node package manager. 
+- Install angular-cli
+- User command prompt and go inside empapp folder and run >ng server --open command. Which will compile type script code and generate javascript code and launch default browse with project url.
+
+Note: In this project we are storing data in localStoage only. Initially, I have added one record in localStorage which you can see on the screen. Then you can perform operation like Search employee, Add, Edit and delete employee.
+
+
+=========================
 # EmpApp
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
